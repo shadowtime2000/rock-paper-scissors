@@ -48,12 +48,19 @@ function Game(props: GameProps) {
     props.onGameEnd(checkWhoWon(2, computerChoice), 2, computerChoice, new Date().toLocaleString());
   }
 
+  const Random = () => {
+    setComputerChoice(Math.floor(Math.random() * options.length));
+    const choice = Math.floor(Math.random() * options.length);
+    props.onGameEnd(checkWhoWon(choice, computerChoice), choice, computerChoice, new Date().toLocaleString());
+  }
+
   return (
     <div className="game">
       <div className="game-body">
         <div className="game-button btn btn-primary" onClick={Rock}>Rock!</div>
         <div className="game-button btn btn-primary" onClick={Paper}>Paper!</div>
         <div className="game-button btn btn-primary" onClick={Scissors}>Scissors!</div>
+        <div className="random-button btn btn-primary" onClick={Random}>Random!</div>
       </div>
     </div>
   )
