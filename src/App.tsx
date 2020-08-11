@@ -4,6 +4,7 @@ import './App.css';
 import Game from './Game/Game';
 import PreviousGame from './PreviousGame/PreviousGame';
 import Stats from './Stats/Stats';
+import DeployButton from './DeployButton/DeployButton';
 
 // I think putting so much logic inside the App component is a bad idea
 function App() {
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="App container">
       <h1>Rock, Paper, Scissors</h1>
+      <DeployButton />
       <Game onGameEnd={onGame}/>
       <div className="btn btn-primary" onClick={clearGames}>Clear Games</div>
       <Stats games={previousGames} />
