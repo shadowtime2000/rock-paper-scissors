@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+import Game from './Game/Game';
+import PreviousGame from './PreviousGame/PreviousGame';
+import Stats from './Stats/Stats';
+
+// I think putting so much logic inside the App component is a bad idea
 function App() {
+  const emptyArr: any[] = [];
+  const [previousGames, setPreviousGames] = useState(emptyArr);
+
+  const onGame = (w: number, p: number, c: number, t: string) => {
+    let newArr = previousGames.slice();
+    newArr.push({whoWon: w, playerChoice: p, computerChoice: c, time: t});
+    newArr.reverse();
+    setPreviousGames(newArr);
+  };
+
+  const clearGames = () => {
+    setPreviousGames(emptyArr);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <Game onGameEnd={onGame}/>
+      <div className="btn btn-primary" onClick={clearGames}>Clear Games</div>
+      <Stats games={previousGames} />
+      {previousGames.map((e, index) => <PreviousGame key={index} whoWon={e.whoWon} playerChoice={e.playerChoice} computerChoice={e.computerChoice} time={e.time} />)}
     </div>
   );
 }
-
 export default App;
