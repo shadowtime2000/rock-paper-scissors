@@ -23,6 +23,7 @@ function App() {
 
   return (
     <div className="App container">
+      <h1>Rock, Paper, Scissors</h1>
       <Game onGameEnd={onGame}/>
       <div className="btn btn-primary" onClick={clearGames}>Clear Games</div>
       <Stats games={previousGames} />

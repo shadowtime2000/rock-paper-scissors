@@ -50,7 +50,6 @@ function Game(props: GameProps) {
 
   return (
     <div className="game">
-      <h1 className="header">Rock, Paper, Scissors</h1>
       <div className="game-body">
         <div className="game-button btn btn-primary" onClick={Rock}>Rock!</div>
         <div className="game-button btn btn-primary" onClick={Paper}>Paper!</div>
